@@ -30,15 +30,25 @@ This project is a full-stack web scraping application built with a NestJS server
 - **Database**: MongoDB
 - **Docker**: For containerization and easy deployment
 
-## Project Structure
+## Running the Application
 
-```plaintext
-project-root/
-├── server/            # NestJS server
-│   ├── src/
-│   └── Dockerfile
-├── client/            # React (Next.js) client
-│   ├── pages/
-│   └── Dockerfile
-├── README.md
-└── docker-compose.yml # Docker Compose configuration
+### Using Docker Compose
+
+To start the application with Docker Compose, follow these steps:
+
+1. **Ensure Docker is running** on your machine.
+
+2. In the project root directory, run the following command:
+
+   ```bash
+   docker-compose up --build
+This command will:
+
+Start the NestJS server on http://localhost:3000.
+Start the Next.js client on http://localhost:3001.
+Start a MongoDB instance on mongodb://localhost:27017.
+Visit http://localhost:3001 in your browser to access the client application.
+
+csharp
+Copy code
+
