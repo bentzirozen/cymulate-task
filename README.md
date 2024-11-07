@@ -39,9 +39,40 @@ To start the application with Docker Compose, follow these steps:
    docker-compose up --build
 This command will:
 
-Start the NestJS server on http://localhost:3000.
-Start the Next.js client on http://localhost:3001.
+Start the NestJS server on http://localhost:3001.
+Start the Next.js client on http://localhost:3000.
 Start a MongoDB instance on mongodb://localhost:27017.
 Visit http://localhost:3001 in your browser to access the client application.
 
+# Scraping Controller API
 
+## API Endpoints
+
+### `POST /scraping`
+Trigger a scraping operation on the provided URL.
+
+**Request Body:**
+
+```json
+{
+  "url": "https://example.com"
+}
+
+Response:
+
+On success, returns a ScrapingResult object with the scraped data.
+
+```json
+{
+"id":1,
+"url":"url",
+"domains":[],
+"urls":[]
+}
+
+### `GET /scraping`
+Retrieve all scraping results.
+
+Response:
+
+Returns an array of ScrapingResult objects.
