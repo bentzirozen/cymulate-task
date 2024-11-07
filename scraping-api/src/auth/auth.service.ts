@@ -1,16 +1,15 @@
 import { Injectable, UnauthorizedException, ConflictException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { User } from '../entities/user.entity';
+import { User } from './schemas/user.schema';
 import { AuthCredentialsDto } from './dto/auth.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    @InjectModel(User.name) private userModel: Model<User>,
     private jwtService: JwtService,
   ) {}
 
@@ -18,7 +17,7 @@ export class AuthService {
     const { email, password } = authCredentialsDto;
 
     // Check if user exists
-    const existingUser = await this.usersRepository.findOne({ where: { email } });
+    const existingUser = await this.userModel.findOne({ email }).exec();
     if (existingUser) {
       throw new ConflictException('Email already exists');
     }
@@ -28,13 +27,13 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Create new user
-    const user = this.usersRepository.create({
+    const user = new this.userModel({
       email,
       password: hashedPassword,
     });
 
     try {
-      await this.usersRepository.save(user);
+      await user.save();
     } catch (error) {
       throw new ConflictException('Email already exists');
     }
@@ -42,7 +41,7 @@ export class AuthService {
 
   async login(authCredentialsDto: AuthCredentialsDto): Promise<{ token: string }> {
     const { email, password } = authCredentialsDto;
-    const user = await this.usersRepository.findOne({ where: { email } });
+    const user = await this.userModel.findOne({ email }).exec();
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload = { email: user.email, sub: user.id };
