@@ -48,31 +48,46 @@ Visit http://localhost:3001 in your browser to access the client application.
 
 ## API Endpoints
 
-### `POST /scraping`
-Trigger a scraping operation on the provided URL.
 
-**Request Body:**
+### POST /scraping
 
+Scrapes a website and returns extracted domains and URLs.
+
+#### Request
 ```json
 {
   "url": "https://example.com"
 }
+```
 
-Response:
-
-On success, returns a ScrapingResult object with the scraped data.
-
+#### Response
 ```json
 {
-"id":1,
-"url":"url",
-"domains":[],
-"urls":[]
+  "id": 1,
+  "url": "https://example.com",
+  "domains": ["example.com", "subdomain.example.com"],
+  "urls": ["https://example.com/page1", "https://example.com/page2"]
 }
+```
 
-### `GET /scraping`
-Retrieve all scraping results.
+### GET /scraping
 
-Response:
+Returns an array of all previously scraped results.
 
-Returns an array of ScrapingResult objects.
+#### Response
+```json
+[
+  {
+    "id": 1,
+    "url": "https://example.com",
+    "domains": ["example.com", "subdomain.example.com"],
+    "urls": ["https://example.com/page1", "https://example.com/page2"]
+  },
+  {
+    "id": 2,
+    "url": "https://another-example.com",
+    "domains": ["another-example.com"],
+    "urls": ["https://another-example.com/home"]
+  }
+]
+```
