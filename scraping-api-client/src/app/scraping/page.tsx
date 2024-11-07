@@ -12,7 +12,6 @@ import {
   Button,
   Card,
   CardContent,
-  Grid,
   CircularProgress,
   Divider,
   Paper,
@@ -72,10 +71,10 @@ export default function ScrapingPage() {
         <Typography variant="h4" component="h1" gutterBottom>
           Web Scraping Dashboard
         </Typography>
-        
+
         <Box component="form" onSubmit={handleSubmit} sx={{ mb: 4 }}>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} sm={9}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+            <Box sx={{ flex: '1 1 60%' }}>
               <TextField
                 fullWidth
                 type="url"
@@ -86,8 +85,8 @@ export default function ScrapingPage() {
                 required
                 disabled={loading}
               />
-            </Grid>
-            <Grid item xs={12} sm={3}>
+            </Box>
+            <Box sx={{ flex: '1 1 35%' }}>
               <Button
                 fullWidth
                 type="submit"
@@ -98,15 +97,15 @@ export default function ScrapingPage() {
               >
                 {loading ? 'Scraping...' : 'Scrape'}
               </Button>
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
         </Box>
 
         <Divider sx={{ mb: 4 }} />
 
-        <Grid container spacing={3}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
           {results.map((result) => (
-            <Grid item xs={12} md={6} key={result._id}>
+            <Box key={result._id} sx={{ width: '100%', md: '48%' }}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" component="h2" gutterBottom>
@@ -125,9 +124,9 @@ export default function ScrapingPage() {
                   </Box>
                 </CardContent>
               </Card>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
 
         {results.length === 0 && (
           <Box sx={{ textAlign: 'center', mt: 4 }}>

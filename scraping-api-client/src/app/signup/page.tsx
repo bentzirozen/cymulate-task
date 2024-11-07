@@ -13,7 +13,6 @@ import {
   Paper,
   Avatar,
   CssBaseline,
-  Grid,
 } from '@mui/material';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
@@ -110,15 +109,13 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" style={{ textDecoration: 'none' }}>
-                  <Typography color="primary" variant="body2">
-                    Already have an account? Sign in
-                  </Typography>
-                </Link>
-              </Grid>
-            </Grid>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Link href="/login" style={{ textDecoration: 'none' }}>
+                <Typography color="primary" variant="body2">
+                  Already have an account? Sign in
+                </Typography>
+              </Link>
+            </Box>
           </Box>
         </Paper>
       </Box>

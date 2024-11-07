@@ -28,7 +28,7 @@ RUN npm install --only=production
 COPY --from=build /app/dist /app/dist
 
 # Expose the port the app will run on
-EXPOSE 3000
+EXPOSE 3001
 
 # Start the application
 CMD ["node", "dist/main"]

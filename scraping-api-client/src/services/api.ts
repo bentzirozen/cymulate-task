@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
 
 api.interceptors.request.use((config) => {
@@ -23,6 +23,7 @@ export const getScrapingResults = async () => {
 };
 
 export const login = async (email: string, password: string) => {
+  console.log(process.env.NEXT_PUBLIC_API_BASE_URL)
   const response = await api.post('/auth/login', { email, password });
   return response.data;
 };

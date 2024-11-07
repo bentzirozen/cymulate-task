@@ -14,7 +14,6 @@ import {
   Paper,
   Avatar,
   CssBaseline,
-  Grid,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -96,15 +95,13 @@ export default function Login() {
             >
               Sign In
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/signup" style={{ textDecoration: 'none' }}>
-                  <Typography color="primary" variant="body2">
-                    Don't have an account? Sign up
-                  </Typography>
-                </Link>
-              </Grid>
-            </Grid>
+            <Box display="flex" justifyContent="flex-end">
+              <Link href="/signup" style={{ textDecoration: 'none' }}>
+                <Typography color="primary" variant="body2">
+                  Don't have an account? Sign up
+                </Typography>
+              </Link>
+            </Box>
           </Box>
         </Paper>
       </Box>
