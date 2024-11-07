@@ -1,6 +1,6 @@
 # Web Scraping Application
 
-This project is a full-stack web scraping application built with a NestJS server and a React (Next.js) client. The application allows users to submit a URL for scraping, and it retrieves and displays extracted data such as domains and URLs from the specified website.
+This project is a full-stack web scraping application built with a NestJS server and a React (Next.js) client. The application allows users to submit a URL for scraping, retrieve and display extracted data, and manage user registration and login.
 
 ## Table of Contents
 
@@ -14,19 +14,18 @@ This project is a full-stack web scraping application built with a NestJS server
 - [Running the Application](#running-the-application)
 - [Docker Setup](#docker-setup)
 - [API Endpoints](#api-endpoints)
-- [License](#license)
 
 ---
 
 ## Overview
 
-- **Server**: The backend is built with [NestJS](https://nestjs.com/), handling API requests and performing web scraping operations.
-- **Client**: The frontend is built with [React (Next.js)](https://nextjs.org/), providing a user interface to submit URLs for scraping and view results.
-- **Database**: MongoDB, managed via Mongoose, stores scraped data.
+- **Server**: The backend is built with [NestJS](https://nestjs.com/), handling API requests, user authentication, and web scraping operations.
+- **Client**: The frontend is built with [React (Next.js)](https://nextjs.org/), providing a user interface to submit URLs for scraping, view results, and manage user authentication.
+- **Database**: MongoDB, managed via Mongoose, stores user data and scraped results.
 
 ## Technologies Used
 
-- **Backend**: NestJS, TypeScript, Mongoose, TypeORM (optional for relational DB support)
+- **Backend**: NestJS, TypeScript, Mongoose
 - **Frontend**: React, Next.js, TypeScript, Axios, Tailwind CSS (for styling)
 - **Database**: MongoDB
 - **Docker**: For containerization and easy deployment
